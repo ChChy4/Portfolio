@@ -1,0 +1,207 @@
+/* ---------- Tokens ---------- */
+:root {
+  --black: #000;
+  --white: #fff;
+  --font: "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --gutter: clamp(16px, 5vw, 64px);
+  --max-width: 1200px;
+  --rule: 4px solid var(--black);
+  --section-space: clamp(64px, 10vw, 140px);
+}
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--white);
+  color: var(--black);
+  font-family: var(--font);
+  font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  line-height: 1.5;
+}
+
+h1, h2, h3, p, ul {
+  margin: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+:focus-visible {
+  outline: 3px solid var(--black);
+  outline-offset: 4px;
+}
+
+/* ---------- Shared layout ---------- */
+.hero,
+main > section {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+main > section {
+  padding-block: var(--section-space);
+  border-top: var(--rule);
+}
+
+.section-label {
+  font-size: 0.875rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: clamp(32px, 5vw, 56px);
+}
+
+/* Empty content slots: a dashed frame shows where content goes.
+   It disappears automatically once the slot is filled. */
+.hero-name:empty,
+.hero-discipline:empty,
+.hero-tagline:empty,
+.project-title:empty,
+.about-bio:empty,
+.contact-email:empty {
+  display: block;
+  border: 2px dashed var(--black);
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: clamp(16px, 3vw, 32px);
+  padding-block: var(--section-space);
+}
+
+.hero-discipline {
+  order: -1;
+  font-size: clamp(0.875rem, 0.8rem + 0.4vw, 1.125rem);
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.hero-discipline:empty {
+  width: min(280px, 60%);
+  min-height: 1.5em;
+}
+
+.hero-name {
+  font-size: clamp(3rem, 1rem + 10vw, 10rem);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+.hero-name:empty {
+  min-height: 1.8em;
+}
+
+.hero-tagline {
+  max-width: 32ch;
+  font-size: clamp(1.25rem, 1rem + 1.2vw, 2rem);
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.hero-tagline:empty {
+  width: min(560px, 100%);
+  min-height: 2.5em;
+}
+
+/* ---------- Projects ---------- */
+.project-grid {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(32px, 5vw, 64px) clamp(24px, 4vw, 48px);
+}
+
+.project-image {
+  aspect-ratio: 4 / 3;
+  border: var(--rule);
+  overflow: hidden;
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-title {
+  margin-top: 16px;
+  font-size: clamp(1.25rem, 1rem + 1vw, 1.75rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.project-title:empty {
+  width: 60%;
+  min-height: 1.4em;
+}
+
+/* ---------- About ---------- */
+.about-bio {
+  max-width: 40ch;
+  font-size: clamp(1.25rem, 1rem + 1vw, 1.875rem);
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.about-bio:empty {
+  width: min(720px, 100%);
+  min-height: 5em;
+}
+
+/* ---------- Contact ---------- */
+.contact-email {
+  display: inline-block;
+  color: var(--black);
+  font-size: clamp(1.5rem, 0.5rem + 4.5vw, 4.5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  text-decoration: underline;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.12em;
+  overflow-wrap: anywhere;
+}
+
+.contact-email:hover {
+  background: var(--black);
+  color: var(--white);
+}
+
+.contact-email:empty {
+  width: min(640px, 100%);
+  min-height: 1.3em;
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 640px) {
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    min-height: 85svh;
+  }
+}
